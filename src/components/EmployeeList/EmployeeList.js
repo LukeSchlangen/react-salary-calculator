@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 const EmployeeList = ({ employeeList }) => (
   <ul>
-    {employeeList.map(employee => (<li key={employee.idNumber}>Bob</li>))}
+    {employeeList.map(employee => (
+      <li key={employee.idNumber}>
+        {employee.firstName} {employee.lastName} is the {employee.jobTitle} and makes ${employee.annualSalary}
+      </li>
+    ))}
   </ul>
 );
 
@@ -14,11 +18,7 @@ EmployeeList.propTypes = {
     idNumber: String,
     jobTitle: String,
     annualSalary: String,
-  })),
-};
-
-EmployeeList.defaultProps = {
-  employeeList: [],
+  })).isRequired,
 };
 
 export default EmployeeList;

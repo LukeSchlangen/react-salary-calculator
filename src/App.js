@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import EmployeeForm from './components/EmployeeForm/EmployeeForm';
 import EmployeeList from './components/EmployeeList/EmployeeList';
+import EmployeeTotal from './components/EmployeeTotal/EmployeeTotal';
 
 class App extends Component {
   constructor() {
@@ -33,7 +34,7 @@ class App extends Component {
         </p>
         <EmployeeForm addEmployee={this.addEmployee} />
         <EmployeeList employeeList={this.state.employeeList} />
-        {/* <EmployeeTotal employeeList={this.state.employeeList} /> */}
+        <EmployeeTotal employeeList={this.state.employeeList} />
       </div>
     );
   }
