@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import EmployeeForm from './components/EmployeeForm/EmployeeForm';
-import EmployeeList from './components/EmployeeList/EmployeeList';
-import EmployeeTotal from './components/EmployeeTotal/EmployeeTotal';
+import EmployeeForm from '../EmployeeForm/EmployeeForm';
+import EmployeeList from '../EmployeeList/EmployeeList';
+import EmployeeTotal from '../EmployeeTotal/EmployeeTotal';
 
 class App extends Component {
   constructor() {
@@ -24,14 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
         <EmployeeForm addEmployee={this.addEmployee} />
         <EmployeeList employeeList={this.state.employeeList} />
         <EmployeeTotal employeeList={this.state.employeeList} />
