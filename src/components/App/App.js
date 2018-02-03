@@ -12,6 +12,7 @@ class App extends Component {
     };
 
     this.addEmployee = this.addEmployee.bind(this);
+    this.deleteEmployee = this.deleteEmployee.bind(this);
   }
 
   addEmployee(newEmployee) {
@@ -20,11 +21,19 @@ class App extends Component {
     });
   }
 
+  deleteEmployee(employeeToDelete) {
+    const matchEmployee = employee => employee.idNumber !== employeeToDelete.idNumber;
+
+    this.setState({
+      employeeList: this.state.employeeList.filter(matchEmployee),
+    });
+  }
+
   render() {
     return (
       <div>
         <EmployeeForm addEmployee={this.addEmployee} />
-        <EmployeeList employeeList={this.state.employeeList} />
+        <EmployeeList employeeList={this.state.employeeList} deleteEmployee={this.deleteEmployee} />
         <EmployeeTotal employeeList={this.state.employeeList} />
       </div>
     );
