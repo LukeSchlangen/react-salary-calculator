@@ -39,6 +39,7 @@ class EmployeeForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        {/* eslint-disable max-len  */}
         <input onChange={this.handleChange} placeholder="First Name" value={this.state.firstName} name="firstName" />
         <input onChange={this.handleChange} placeholder="Last Name" value={this.state.lastName} name="lastName" />
         <input onChange={this.handleChange} placeholder="ID Number" value={this.state.idNumber} name="idNumber" />
