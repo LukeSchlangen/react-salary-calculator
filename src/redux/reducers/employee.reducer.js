@@ -11,7 +11,7 @@ export default function (state = [], action) {
     case actionTypes.addEmployee:
       return [...state, action.payload];
     case actionTypes.deleteEmployee:
-      return removeEmployee(state.employeeList, action.payload);
+      return removeEmployee(state, action.payload);
     default:
       return state;
   }
