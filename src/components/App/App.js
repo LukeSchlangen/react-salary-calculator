@@ -1,43 +1,18 @@
-import React, { Component } from 'react';
-import EmployeeForm from '../EmployeeForm/EmployeeForm';
-import EmployeeList from '../EmployeeList/EmployeeList';
-import EmployeeTotal from '../EmployeeTotal/EmployeeTotal';
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import EmployeeView from '../EmployeeView/EmployeeView';
+import reducers from '../../redux/reducers';
 
-class App extends Component {
-  constructor() {
-    super();
+const store = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line
+);
 
-    this.state = {
-      employeeList: [],
-    };
-
-    this.addEmployee = this.addEmployee.bind(this);
-    this.deleteEmployee = this.deleteEmployee.bind(this);
-  }
-
-  addEmployee(newEmployee) {
-    this.setState({
-      employeeList: [...this.state.employeeList, newEmployee],
-    });
-  }
-
-  deleteEmployee(employeeToDelete) {
-    const matchEmployee = employee => employee.idNumber !== employeeToDelete.idNumber;
-
-    this.setState({
-      employeeList: this.state.employeeList.filter(matchEmployee),
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <EmployeeForm addEmployee={this.addEmployee} />
-        <EmployeeList employeeList={this.state.employeeList} deleteEmployee={this.deleteEmployee} />
-        <EmployeeTotal employeeList={this.state.employeeList} />
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <EmployeeView />
+  </Provider>
+);
 
 export default App;
