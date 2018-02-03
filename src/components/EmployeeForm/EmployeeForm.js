@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const emptyEmployeeObject = {
+  firstName: '',
+  lastName: '',
+  idNumber: '',
+  jobTitle: '',
+  annualSalary: '',
+};
+
 class EmployeeForm extends Component {
   constructor() {
     super();
-    this.state = {
-      firstName: '',
-      lastName: '',
-      idNumber: '',
-      jobTitle: '',
-      annualSalary: '',
-    };
+
+    this.state = emptyEmployeeObject;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearEmployeeFields = this.clearEmployeeFields.bind(this);
   }
 
   handleChange(event) {
@@ -25,6 +29,11 @@ class EmployeeForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.addEmployee(this.state);
+    this.clearEmployeeFields();
+  }
+
+  clearEmployeeFields() {
+    this.setState(emptyEmployeeObject);
   }
 
   render() {
