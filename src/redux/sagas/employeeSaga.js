@@ -17,7 +17,9 @@ export function* watchAddEmployeeAsync() {
 // Our worker Saga: will perform the delete employee task
 export function* deleteEmployeeAsync(payload) {
   yield call(delay, 1000);
-  yield put({ type: 'DELETE_EMPLOYEE', payload });
+  console.log(payload); // logs undefined on initial app load
+  const action = payload && payload.payload;
+  yield put({ type: 'DELETE_EMPLOYEE', payload: action });
 }
 
 // Our watcher Saga: spawn a new deleteEmployeeAsync task on each DELETE_EMPLOYEE_ASYNC
