@@ -2,10 +2,8 @@ import { delay } from 'redux-saga';
 import { put, call, takeEvery, all } from 'redux-saga/effects';
 
 // Our worker Saga: will perform the add employee task
-export function* addEmployeeAsync(action) {
+export function* addEmployeeAsync({ payload }) {
   yield call(delay, 1000);
-  console.log(action); // logs undefined on initial app load
-  const payload = action && action.payload;
   yield put({ type: 'ADD_EMPLOYEE', payload });
 }
 
@@ -15,10 +13,8 @@ export function* watchAddEmployeeAsync() {
 }
 
 // Our worker Saga: will perform the delete employee task
-export function* deleteEmployeeAsync(action) {
+export function* deleteEmployeeAsync({ payload }) {
   yield call(delay, 1000);
-  console.log(action); // logs undefined on initial app load
-  const payload = action && action.payload;
   yield put({ type: 'DELETE_EMPLOYEE', payload });
 }
 
@@ -30,9 +26,7 @@ export function* watchDeleteEmployeeAsync() {
 
 export default function* rootSaga() {
   yield all([
-    addEmployeeAsync(),
     watchAddEmployeeAsync(),
-    deleteEmployeeAsync(),
     watchDeleteEmployeeAsync(),
   ]);
 }
