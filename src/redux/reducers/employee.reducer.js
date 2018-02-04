@@ -9,9 +9,9 @@ const removeEmployee = (employeeList, employeeToDelete) => {
 export default function (state = [], action) {
   switch (action.type) {
     case actionTypes.addEmployee:
-      return [...state, action.payload];
+      return action.payload ? [...state, action.payload] : state;
     case actionTypes.deleteEmployee:
-      return removeEmployee(state, action.payload);
+      return action.payload ? removeEmployee(state, action.payload) : state;
     default:
       return state;
   }
