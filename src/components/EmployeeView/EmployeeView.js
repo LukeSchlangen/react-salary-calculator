@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import EmployeeForm from '../EmployeeForm/EmployeeForm';
 import EmployeeList from '../EmployeeList/EmployeeList';
 import EmployeeTotal from '../EmployeeTotal/EmployeeTotal';
-import { addEmployee, deleteEmployee } from '../../redux/actions';
+import { addEmployeeAsync, deleteEmployeeAsync } from '../../redux/actions';
 
 const EmployeeView = props => (
   <div>
-    <EmployeeForm addEmployee={props.addEmployee} />
-    <EmployeeList employeeList={props.employeeList} deleteEmployee={props.deleteEmployee} />
+    <EmployeeForm addEmployee={props.addEmployeeAsync} />
+    <EmployeeList employeeList={props.employeeList} deleteEmployee={props.deleteEmployeeAsync} />
     <EmployeeTotal employeeList={props.employeeList} />
   </div>
 );
@@ -19,8 +19,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addEmployee,
-  deleteEmployee,
+  addEmployeeAsync,
+  deleteEmployeeAsync,
 };
 
 const propTypes = {
@@ -31,8 +31,8 @@ const propTypes = {
     jobTitle: String,
     annualSalary: String,
   })),
-  addEmployee: PropTypes.func.isRequired,
-  deleteEmployee: PropTypes.func.isRequired,
+  addEmployeeAsync: PropTypes.func.isRequired,
+  deleteEmployeeAsync: PropTypes.func.isRequired,
 };
 
 EmployeeView.propTypes = propTypes;
