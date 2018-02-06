@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const employeeSalary = (sum, employee) => sum + Number(employee.annualSalary);
 
@@ -19,4 +20,8 @@ EmployeeTotal.propTypes = {
   })).isRequired,
 };
 
-export default EmployeeTotal;
+const mapStateToProps = state => ({
+  employeeList: state.employeeList,
+});
+
+export default connect(mapStateToProps)(EmployeeTotal);
