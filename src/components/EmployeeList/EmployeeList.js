@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteEmployeeAsync } from '../../redux/actions';
 
+// eslint-disable-next-line no-shadow
 const EmployeeList = ({ employeeList, deleteEmployeeAsync }) => (
   <ul>
     {employeeList.map(employee => (
