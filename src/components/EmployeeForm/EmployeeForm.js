@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addEmployeeAsync } from '../../redux/actions';
 
 const emptyEmployeeObject = {
   firstName: '',
@@ -28,7 +30,7 @@ class EmployeeForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addEmployee(this.state);
+    this.props.addEmployeeAsync(this.state);
     this.clearEmployeeFields();
   }
 
@@ -52,7 +54,15 @@ class EmployeeForm extends Component {
 }
 
 EmployeeForm.propTypes = {
-  addEmployee: PropTypes.func.isRequired,
+  addEmployeeAsync: PropTypes.func.isRequired,
 };
 
-export default EmployeeForm;
+const mapStateToProps = state => ({
+  employeeList: state.employeeList,
+});
+
+const mapDispatchToProps = {
+  addEmployeeAsync,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);

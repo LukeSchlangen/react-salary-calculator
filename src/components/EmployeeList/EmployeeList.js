@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteEmployeeAsync } from '../../redux/actions';
 
-const EmployeeList = ({ employeeList, deleteEmployee }) => (
+// eslint-disable-next-line no-shadow
+const EmployeeList = ({ employeeList, deleteEmployeeAsync }) => (
   <ul>
     {employeeList.map(employee => (
       <li key={employee.idNumber}>
@@ -9,7 +12,7 @@ const EmployeeList = ({ employeeList, deleteEmployee }) => (
         ${employee.lastName}
         is the ${employee.jobTitle}
         and makes ${employee.annualSalary}`}
-        <button onClick={() => deleteEmployee(employee)}>
+        <button onClick={() => deleteEmployeeAsync(employee)}>
           Delete
         </button>
       </li>
@@ -25,7 +28,15 @@ EmployeeList.propTypes = {
     jobTitle: String,
     annualSalary: String,
   })).isRequired,
-  deleteEmployee: PropTypes.func.isRequired,
+  deleteEmployeeAsync: PropTypes.func.isRequired,
 };
 
-export default EmployeeList;
+const mapStateToProps = state => ({
+  employeeList: state.employeeList,
+});
+
+const mapDispatchToProps = {
+  deleteEmployeeAsync,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeList);
